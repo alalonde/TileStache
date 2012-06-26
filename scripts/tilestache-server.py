@@ -46,12 +46,12 @@ if __name__ == '__main__':
             sys.path.insert(0, p)
 
     from werkzeug.serving import run_simple
-    import TileStache
+    from TileStache.WSGICustomTileServer import WSGICustomTileServer
 
     if not os.path.exists(options.file):
         print >> sys.stderr, "Config file not found. Use -c to pick a tilestache config file."
         sys.exit(1)
 
-    app = TileStache.WSGITileServer(config=options.file, autoreload=True)
+    app = WSGICustomTileServer(config=options.file, autoreload=True)
     run_simple(options.ip, options.port, app)
 
